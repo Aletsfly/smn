@@ -1,0 +1,31 @@
+name: smn
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.2
+  geolocator: 13.0.2
+  geocoding: 3.0.0
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - "assets/data/datos_municipios.json"
+    - "assets/data/pronosticos.json"
+    - "assets/data/dia1.json"
+    - "assets/data/dia2.json"
+    - "assets/data/dia3.json"
+    - "assets/data/dia4.json"
