@@ -10,6 +10,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:smn/providers/provider_lista_municipios.dart';
 import 'package:smn/providers/provider_pronosticos.dart';
 
+import '../custom_widgets/widget_dia.dart';
+
 class PaginaInicial extends StatefulWidget {
   const PaginaInicial({super.key});
 
@@ -84,6 +86,9 @@ class _PaginaInicialState extends State<PaginaInicial> {
 
   @override
   Widget build(BuildContext context) {
+    // estoy preguntando que estamos usando que dispositivo a travez de os pixeles
+    bool esTelefono = MediaQuery.of(context).size.width <= 600;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
@@ -152,6 +157,60 @@ class _PaginaInicialState extends State<PaginaInicial> {
                 child: Column(
                   children: [
                     DiaPrincipal(dia: diaPrincipal),
+                    ExpansionTile(
+                      title: Text(""),
+                      trailing: Icon(Icons.info,
+                      size: 40,
+                          color: Colors.amber,
+                      ),
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(20.0),
+                          decoration: BoxDecoration(
+                            color: Color(0xfffcf8e3),
+                            border: Border.all(color: Colors.grey
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text('Temp Máx ', style: TextStyle(color: Colors.redAccent),),
+                                  Text("Puede variar de 1°C a 3°C " ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('Temp Min ', style: TextStyle(color: Colors.blueAccent),),
+                                  Text("Puede variar +/- 1°C ")
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    LayoutBuilder(builder: (context, condicionantes){
+                      return Flex(
+                        direction: esTelefono ? Axis.vertical: Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List.generate(
+                          4,
+                            (index){
+                              return SizedBox(
+                                width: esTelefono? condicionantes.maxWidth: condicionantes.maxWidth/4,
+                                child: WidgetDia(
+                                  pronostico: proveedor_de_dias.pronosticos[index],
+                                  index: index,
+                                ),
+                              );
+                            }
+                        ),
+
+                      );
+
+                    })
                   ],
                 ),
               ),
