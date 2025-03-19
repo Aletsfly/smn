@@ -23,7 +23,10 @@ class ModeloPronostico {
   String dirvienc;
   String raf;
 
-  ModeloPronostico({required this.nes,
+  String? fecha;
+
+  ModeloPronostico({
+    required this.nes,
     required this.nmun,
     required this.tmax,
     required this.tmin,
@@ -32,22 +35,23 @@ class ModeloPronostico {
     required this.prec,
     required this.velvien,
     required this.dirvienc,
-    required this.raf});
+    required this.raf,
+    this.fecha,
+  });
 
   factory ModeloPronostico.fromJson(Map<String, dynamic> json) {
     return ModeloPronostico(
-      nes : json['nes']??'24',
-      nmun : json['nmun']??'13',
-      tmax : json['tmax']??'',
-      tmin : json['tmin']??'',
-      desciel : json['desciel']??'',
-      probprec : json['probprec']??'',
-      prec : json['prec']??'',
-      velvien : json['velvien']??'',
-      dirvienc : json['dirvienc']??'',
-      raf : json['raf']??'',
+      fecha: json['fecha'] ?? '',
+      nes: json['nes'] ?? '24',
+      nmun: json['nmun'] ?? '13',
+      tmax: json['tmax'] ?? '',
+      tmin: json['tmin'] ?? '',
+      desciel: json['desciel'] ?? '',
+      probprec: json['probprec'] ?? '',
+      prec: json['prec'] ?? '',
+      velvien: json['velvien'] ?? '',
+      dirvienc: json['dirvienc'] ?? '',
+      raf: json['raf'] ?? '',
     );
   }
 }
-
-
